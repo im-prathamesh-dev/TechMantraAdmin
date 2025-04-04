@@ -1,0 +1,97 @@
+/* Full screen animated gradient background with sparkles */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(-45deg, #007bff, #00c8ff, #6610f2, #00b894);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+  
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Sparkle layer overlay */
+  .sparkle-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.2;
+    animation: sparkleMove 40s linear infinite;
+    z-index: 1;
+  }
+  
+  @keyframes sparkleMove {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  /* Card should sit above the sparkles */
+  .login-card-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .techmantra-heading {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #00c8ff, 0 0 30px #00c8ff;
+    margin-bottom: 2rem;
+  }
+  /* Animate the login card on load */
+@keyframes slideFadeIn {
+    0% {
+      transform: translateY(30px) scale(0.95);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .login-card-wrapper {
+    position: relative;
+    z-index: 2;
+    animation: slideFadeIn 0.8s ease-out forwards;
+  }
+  form button {
+    background: linear-gradient(135deg, #00c8ff, #007bff);
+    border: none;
+    color: #fff;
+    padding: 0.75rem;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 200, 255, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  form button:hover {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 200, 255, 0.6);
+  }
+  
