@@ -30,7 +30,7 @@
     left: 0;
     width: 200%;
     height: 200%;
-    background-image: radial-gradient(white 1px, transparent 1px);
+    background-image: radial-gradient(white 1.9px, transparent 1.5px);
     background-size: 20px 20px;
     opacity: 0.2;
     animation: sparkleMove 40s linear infinite;
