@@ -57,9 +57,7 @@ const Dashboard = () => {
   const handleSave = async (id) => {
     try {
       const res = await axios.put(`https://techmantraadmin.onrender.com/api/registrations/${id}`, editedData);
-      const updated = data.map((item) =>
-        item._id === id ? { ...res.data } : item
-      );
+      const updated = data.map((item) => item._id === id ? { ...res.data } : item);
       setData(updated);
       setEditRow(null);
     } catch (err) {
@@ -98,11 +96,11 @@ const Dashboard = () => {
     <>
       <Navbar />
       <div className="container mt-4">
-        <h3 className="mb-4">Recent Event Registrations</h3>
+        <h3 className="mb-4 text-center text-md-start">Recent Event Registrations</h3>
 
         {/* Filter Section */}
         <form className="row g-3 mb-4" onSubmit={handleFilter}>
-          <div className="col-md-3">
+          <div className="col-12 col-md-4">
             <input
               type="text"
               name="event"
@@ -112,10 +110,12 @@ const Dashboard = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="col-md-3 d-flex gap-2">
+          <div className="col-6 col-md-2">
             <button className="btn btn-primary w-100" type="submit">
               Apply Filter
             </button>
+          </div>
+          <div className="col-6 col-md-2">
             <button
               type="button"
               className="btn btn-success w-100"
@@ -130,7 +130,7 @@ const Dashboard = () => {
         {/* Table */}
         <div className="table-responsive shadow p-3 bg-white rounded" style={{ fontSize: '14px' }}>
           <table className="table table-bordered table-hover text-center align-middle">
-            <thead style={{ backgroundColor: '#343a40', color: '#fff' }}>
+            <thead className="table-dark">
               <tr>
                 <th>Name</th>
                 <th>College Name</th>
@@ -151,51 +151,17 @@ const Dashboard = () => {
               {currentItems.length > 0 ? (
                 currentItems.map((reg) => (
                   <tr key={reg._id}>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input value={editedData.name} onChange={(e) => handleFieldChange(e, 'name')} className="form-control" />
-                      ) : reg.name}
-                    </td>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input value={editedData.clgname} onChange={(e) => handleFieldChange(e, 'clgname')} className="form-control" />
-                      ) : reg.clgname}
-                    </td>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input value={editedData.email} onChange={(e) => handleFieldChange(e, 'email')} className="form-control" />
-                      ) : reg.email}
-                    </td>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input value={editedData.cnumber} onChange={(e) => handleFieldChange(e, 'cnumber')} className="form-control" />
-                      ) : reg.cnumber}
-                    </td>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input value={editedData.class} onChange={(e) => handleFieldChange(e, 'class')} className="form-control" />
-                      ) : reg.class}
-                    </td>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input value={editedData.event} onChange={(e) => handleFieldChange(e, 'event')} className="form-control" />
-                      ) : reg.event}
-                    </td>
+                    <td>{editRow === reg._id ? <input value={editedData.name} onChange={(e) => handleFieldChange(e, 'name')} className="form-control" /> : reg.name}</td>
+                    <td>{editRow === reg._id ? <input value={editedData.clgname} onChange={(e) => handleFieldChange(e, 'clgname')} className="form-control" /> : reg.clgname}</td>
+                    <td>{editRow === reg._id ? <input value={editedData.email} onChange={(e) => handleFieldChange(e, 'email')} className="form-control" /> : reg.email}</td>
+                    <td>{editRow === reg._id ? <input value={editedData.cnumber} onChange={(e) => handleFieldChange(e, 'cnumber')} className="form-control" /> : reg.cnumber}</td>
+                    <td>{editRow === reg._id ? <input value={editedData.class} onChange={(e) => handleFieldChange(e, 'class')} className="form-control" /> : reg.class}</td>
+                    <td>{editRow === reg._id ? <input value={editedData.event} onChange={(e) => handleFieldChange(e, 'event')} className="form-control" /> : reg.event}</td>
                     <td>{reg.cnumber}</td>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input value={editedData.type} onChange={(e) => handleFieldChange(e, 'type')} className="form-control" />
-                      ) : reg.type}
-                    </td>
-                    <td>
-                      {editRow === reg._id ? (
-                        <input
-                          value={editedData.participants?.join(', ')}
-                          onChange={(e) => handleFieldChange(e, 'participants')}
-                          className="form-control"
-                        />
-                      ) : reg.participants?.join(', ')}
-                    </td>
+                    <td>{editRow === reg._id ? <input value={editedData.type} onChange={(e) => handleFieldChange(e, 'type')} className="form-control" /> : reg.type}</td>
+                    <td>{editRow === reg._id ? (
+                      <input value={editedData.participants?.join(', ')} onChange={(e) => handleFieldChange(e, 'participants')} className="form-control" />
+                    ) : reg.participants?.join(', ')}</td>
                     <td>
                       <select
                         className={`form-select ${reg.paymentStatus === 'Done' ? 'text-success' : 'text-warning'}`}
@@ -210,21 +176,15 @@ const Dashboard = () => {
                     <td>{new Date(reg.createdAt).toLocaleString()}</td>
                     <td>
                       {editRow === reg._id ? (
-                        <button className="btn btn-sm btn-success" onClick={() => handleSave(reg._id)}>
-                          Save
-                        </button>
+                        <button className="btn btn-sm btn-success" onClick={() => handleSave(reg._id)}>Save</button>
                       ) : (
-                        <button className="btn btn-sm btn-primary" onClick={() => handleEdit(reg._id, reg)}>
-                          Edit
-                        </button>
+                        <button className="btn btn-sm btn-primary" onClick={() => handleEdit(reg._id, reg)}>Edit</button>
                       )}
                     </td>
                   </tr>
                 ))
               ) : (
-                <tr>
-                  <td colSpan="13" className="text-center">No data found</td>
-                </tr>
+                <tr><td colSpan="13" className="text-center">No data found</td></tr>
               )}
             </tbody>
           </table>
@@ -233,7 +193,7 @@ const Dashboard = () => {
         {/* Pagination */}
         {totalPages > 1 && (
           <nav className="d-flex justify-content-center mt-3">
-            <ul className="pagination">
+            <ul className="pagination flex-wrap justify-content-center">
               <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
                 <button className="page-link" onClick={() => setCurrentPage(p => p - 1)}>Previous</button>
               </li>
