@@ -18,7 +18,7 @@ const Dashboard = () => {
   const handleFilter = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.get('http://localhost:4000/api/registrations', { params: filters });
+      const res = await axios.get('https://techmantraadmin.onrender.com/api/registrations', { params: filters });
       const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       setData(sorted);
       setCurrentPage(1);
@@ -39,7 +39,7 @@ const Dashboard = () => {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:4000/api/registrations', {
+      const res = await axios.get('https://techmantraadmin.onrender.com/api/registrations', {
         headers: { Authorization: `Bearer ${token}` }
       });
       const sorted = res.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
@@ -56,7 +56,7 @@ const Dashboard = () => {
 
   const handleSave = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:4000/api/registrations/${id}`, editedData);
+      const res = await axios.put(`https://techmantraadmin.onrender.com/api/registrations/${id}`, editedData);
       const updated = data.map((item) =>
         item._id === id ? { ...res.data } : item
       );
@@ -74,7 +74,7 @@ const Dashboard = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:4000/api/registrations/${id}/status`, { paymentStatus: newStatus });
+      await axios.put(`https://techmantraadmin.onrender.com/api/registrations/${id}/status`, { paymentStatus: newStatus });
       const updated = data.map(item =>
         item._id === id ? { ...item, paymentStatus: newStatus } : item
       );
