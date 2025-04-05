@@ -11,7 +11,7 @@ const registrationRoutes = require('./routes/registrations');
 const app = express();
 
 // Middleware
-const cors = require('cors');
+// const cors = require('cors');
 
 const allowedOrigins = [
   'http://localhost:3000',
