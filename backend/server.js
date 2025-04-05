@@ -11,10 +11,24 @@ const registrationRoutes = require('./routes/registrations');
 const app = express();
 
 // Middleware
+const cors = require('cors');
+
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://tech-mantra-admin.vercel.app'
+];
+
 app.use(cors({
-  origin: 'https://techmantraadmin.onrender.com', // Adjust origin for development
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
+
 app.use(express.json());
 
 // MongoDB connection
