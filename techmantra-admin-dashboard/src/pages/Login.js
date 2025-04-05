@@ -7,8 +7,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const ADMIN_USERNAME = 'admin';
-  const ADMIN_PASSWORD = 'admin123';
+  const ADMIN_USERNAME = 'TechMantraAdmin';
+  const ADMIN_PASSWORD = 'TechMantra@2025';
 
   const handleLogin = (e) => {
     e.preventDefault();
